@@ -1,6 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
-dotenv.config();
+import { readFileSync } from 'fs';
+
+// Manually parse .env
+const envFile = readFileSync('.env', 'utf-8');
+envFile.split('\n').forEach(line => {
+  const [key, value] = line.split('=');
+  if (key && value) process.env[key.trim()] = value.trim();
+});
 
 export default defineConfig({
   testDir: './tests',
