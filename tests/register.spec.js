@@ -7,7 +7,7 @@ test('successful registration', async ({ page }) => {
   await page.goto('https://practice.expandtesting.com/notes/app/register');
  await registerPage.register(
   process.env.TEST_NAME,
-  process.env.TEST_EMAIL,
+  `test+${Date.now()}@gmail.com`,
   process.env.TEST_PASSWORD
 );
   await expect(page.getByText('User account created successfully')).toBeVisible();
